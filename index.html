@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字朗读示例</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 整体样式 */
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin: 30px 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            font-size: 28px;
+        }
+
+        /* 内容容器 */
+        #content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        /* 时间表样式 */
+        .time-section {
+            margin: 25px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border-radius: 6px;
+        }
+
+        /* 药物条目样式 */
+        .medication-item {
+            margin: 15px 0;
+            padding: 12px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            transition: transform 0.2s;
+        }
+        .medication-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* 注意事项样式 */
+        .warning-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 6px;
+        }
+
+        /* 紧急情况样式 */
+        .emergency-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            border-radius: 6px;
+        }
+
+        /* 列表样式 */
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        li {
+            margin: 12px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+    
+
+        /* 图标样式 */
+        #speaker-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 36px;
+            cursor: pointer;
+            color: #3498db;
+            background: white;
+            border-radius: 50%;
+            padding: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        #speaker-icon:hover {
+            transform: scale(1.1);
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>克拉玛依市中心医院用药指导</h1>
+    
+    <div id="content">
+        <div class="patient-info">
+            <p><strong>患者姓名：</strong>玛丽亚木汉·阿卡依（73岁，女）</p>
+            <p><strong>日期：</strong>2025年3月6日</p>
+        </div>
+
+        <div class="time-section">
+            <h2>每日用药时间表</h2>
+            
+            <div class="medication-item">
+                <h3>早晨（餐前30分钟，空腹）：</h3>
+                <ul>
+                    <li>
+                        <strong>泮托拉唑钠肠溶片 20mg</strong>
+                        <ul>
+                            <li>用途：治疗反流性胃炎，减少胃酸分泌</li>
+                            <li>服用方法：整片吞服，不可咀嚼或压碎，服药后至少30分钟再进食</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="medication-item">
+                <h3>早餐后：</h3>
+                <ul>
+                    <li>
+                        <strong>利伐沙班片 10mg</strong>
+                        <ul>
+                            <li>用途：预防心房颤动引起的血栓</li>
+                            <li>服用方法：与食物同服以增强吸收，避免漏服</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>沙库巴曲缬沙坦钠片 200mg</strong>
+                        <ul>
+                            <li>用途：控制高血压及改善心脏功能。</li>
+                            <li>服用方法：避免与ACEI类药物（如培哚普利）联用。 </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>氨氯地平片 5mg </strong>
+                        <ul>
+                            <li>用途：协同降压，扩张血管。</li>
+                            <li>服用方法：每日固定时间服用，监测是否出现下肢水肿或头晕。 </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>琥珀酸美托洛尔缓释片 47.5mg  </strong>
+                        <ul>
+                            <li>用途：降低心率，控制血压。  </li>
+                            <li>服用方法：整片吞服，不可掰开或咀嚼，注意心率（若＜50次/分需就医）。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="warning-section">
+            <h2>关键注意事项</h2>
+            <ul>
+                <li>
+                    <strong>1.药物相互作用风险：</strong>
+                    <ul>
+                        <li>利伐沙班 + 泮托拉唑：可能增加胃肠道出血风险，若出现黑便、呕血或腹痛，立即停药并就医。</li>
+                        <li>沙库巴曲缬沙坦 + 氨氯地平：联用可能导致血压过低，建议每日早晚监测血压（目标＜140/90mmHg）。 </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>2. 特殊人群提示：</strong>
+                    <ul>
+                        <li>患者装有心脏起搏器，服用美托洛尔时需定期检查起搏器功能及心电图。</li>
+                        <li>老年患者肝肾功能可能减退，需每3个月复查肝肾功能（尤其关注肌酐值）。 </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>3. 漏服处理：</strong>
+                    <ul>
+                        <li>若漏服药物，距离下次服药时间＞12小时可补服，否则跳过，勿双倍服药。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="emergency-section">
+            <h2>紧急情况处理</h2>
+            <ul>
+                <li>血压过低（头晕、乏力）：立即平卧，联系医师调整降压药剂量。</li>
+                <li>心率过缓（＜50次/分）：暂停美托洛尔并就诊。 </li>
+                <li>出血症状（牙龈出血、瘀斑）：停用利伐沙班，急诊就医。</li>
+            </ul>
+        </div>
+
+        <div class="pharmacist-notes">
+            <p><strong>药师建议：</strong>复诊时携带所有药盒，便于医师评估疗效</p>
+            <p><strong>克拉玛依市中心医院药学部监制</strong></p>
+            <p><strong>咨询电话：</strong>6697666-6900</p>
+        </div>
+        <p><strong>注意：</strong>本指导基于当前处方，若症状变化或出现不适，请及时就医</p>
+    </div>
+
+    <i class="fas fa-volume-up" id="speaker-icon"></i>
+
+    <script>
+        // 保持原有语音功能不变
+        function speakText() {
+            const text = document.getElementById('content').textContent;
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-CN';
+                utterance.rate = 1;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+        document.getElementById('speaker-icon').addEventListener('click', speakText);
+    </script>
+</body>
+</html>

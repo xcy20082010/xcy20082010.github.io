@@ -106,6 +106,7 @@
             transform: scale(1.1);
             color: #2980b9;
         }
+    </style>
 </head>
 <body>
     <h1>克拉玛依市中心医院用药指导</h1>
@@ -212,7 +213,7 @@
 
     <i class="fas fa-volume-up" id="speaker-icon"></i>
 
-   <script>
+    <script>
         // 保持原有语音功能不变
         function speakText() {
             const text = document.getElementById('content').textContent;
@@ -225,7 +226,23 @@
             }
         }
         document.getElementById('speaker-icon').addEventListener('click', speakText);
+        let touchTimer;
+document.getElementById('speaker-icon').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    touchTimer = setTimeout(toggleSpeech, 100);
+});
+document.getElementById('speaker-icon').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    clearTimeout(touchTimer);
+});
+
+// 处理自动播放策略
+document.addEventListener('DOMContentLoaded', () => {
+    if (responsiveVoice.voiceSupport()) {
+        // 预加载语音引擎
+        responsiveVoice.speak('', 'Chinese Female');
+    }
+});
     </script>
-  
 </body>
 </html>

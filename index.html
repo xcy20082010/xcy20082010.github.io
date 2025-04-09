@@ -106,58 +106,6 @@
             transform: scale(1.1);
             color: #2980b9;
         }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 引入移动端优化语音库 -->
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=HXrPjzFk"></script>
-    <style>
-        /* 移动端优先设计 */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            background: #f8f9fa;
-        }
-
-        #content {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        #speaker-icon {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #2196F3;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: 0 4px 12px rgba(33,150,243,0.3);
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-
-        #speaker-icon:hover {
-            transform: scale(1.1);
-            background: #1976D2;
-        }
-
-        /* 移动端触摸反馈 */
-        @media (hover: none) {
-            #speaker-icon:active {
-                transform: scale(0.95);
-            }
-        }
-    </style>
 </head>
 <body>
     <h1>克拉玛依市中心医院用药指导</h1>
@@ -277,72 +225,8 @@
             }
         }
         document.getElementById('speaker-icon').addEventListener('click', speakText);
-    </script>
-    <div id="speaker-icon">
-        <i class="fas fa-volume-up"></i>
-    </div>
+        
 
-    <script>
-        // 移动端语音控制核心
-        let isSpeaking = false;
-        const speakerIcon = document.getElementById('speaker-icon');
-        const contentText = document.getElementById('content').innerText;
-
-        // 初始化语音引擎
-        function initTTS() {
-            if (typeof responsiveVoice === 'undefined') {
-                alert("语音功能初始化失败，请检查网络连接");
-                return;
-            }
-            
-            // 预加载语音（静音播放）
-            responsiveVoice.speak('', 'Chinese Female', { 
-                onstart: () => responsiveVoice.cancel(),
-                volume: 0
-            });
-        }
-
-        // 统一处理点击/触摸事件
-        function handleSpeech() {
-            if (!isSpeaking) {
-                startSpeech();
-            } else {
-                stopSpeech();
-            }
-        }
-
-        function startSpeech() {
-            // 移动端必须通过用户交互触发
-            responsiveVoice.speak(contentText, 'Chinese Female', {
-                rate: 0.9,
-                pitch: 1,
-                volume: 1,
-                onstart: () => {
-                    isSpeaking = true;
-                    speakerIcon.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                },
-                onend: () => {
-                    isSpeaking = false;
-                    speakerIcon.innerHTML = '<i class="fas fa-volume-up"></i>';
-                }
-            });
-        }
-
-        function stopSpeech() {
-            responsiveVoice.cancel();
-            isSpeaking = false;
-            speakerIcon.innerHTML = '<i class="fas fa-volume-up"></i>';
-        }
-
-        // 事件绑定（兼容触摸设备）
-        speakerIcon.addEventListener('click', handleSpeech);
-        speakerIcon.addEventListener('touchstart', (e) => {
-            e.preventDefault(); // 阻止触摸滚动
-            handleSpeech();
-        });
-
-        // 页面加载后初始化
-        window.addEventListener('DOMContentLoaded', initTTS);
-    </script>
+  
 </body>
 </html>
